@@ -1,0 +1,6 @@
+package model;
+
+public enum ConsultState
+{
+	WAITING, CONSULTATION, HOSPITALIZATION, AUTHORIZEDEXIT, UNATTENDEDEXIT
+}
