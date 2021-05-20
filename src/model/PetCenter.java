@@ -25,10 +25,11 @@ public class PetCenter
 
 	public void addVet(String idNumber, String name, String lastName)
 	{
-		if(vetCount >= MAX_VETS)
-			System.out.println("Sorry, the system has reached the maximum capacity of veterinarians");
-		else
+		if(idNumber != null && name != null && lastName != null)
+		{
 			veterinarians[vetCount] = new Veterinarian(idNumber, name, lastName);
+			vetCount++;
+		}
 	}
 
 	public void addPet(String species, String name, String symptoms, Owner petOwner, PriorityLevel petPriority)
@@ -37,5 +38,15 @@ public class PetCenter
 			System.out.println("Sorry, the system has reached the maximum capacity of pets");
 		else
 			pets[petCount] = new Pet(species, name, symptoms, petOwner, petPriority);
+	}
+
+	public void assignPet()
+	{
+		
+	}
+
+	public boolean hasVets()
+	{
+		return vetCount < MAX_VETS;
 	}
 }
