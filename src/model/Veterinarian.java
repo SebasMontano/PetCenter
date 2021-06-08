@@ -28,10 +28,15 @@ public class Veterinarian
 		currentlyAttending = petToAttend;
 	}
 
+	public String getIdNumber()
+	{
+		return idNumber;
+	}
+
 	// Methods
 
 	public String toString()
 	{
-		return "The ID number of the Veterinarian is: " + idNumber + name + lastNames;
+		return "The ID number of the Veterinarian is: " + idNumber+ "\nName of Veterinarian: " + name + "\nLast names of the veterinarian: " + lastNames + "\n";
 	}
 }

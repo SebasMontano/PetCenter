@@ -29,6 +29,26 @@ public class PetCenter
 		vetCount++;
 	}
 
+	public String deleteVet(String input)
+	{
+		String message = "";
+		boolean hasEncounteredVet = false;
+
+		for(int i = 0;i < vetCount && !hasEncounteredVet;i++)
+		{
+			if(veterinarians[i].getIdNumber() == input)
+			{
+				veterinarians[i] = null;
+				hasEncounteredVet = true;
+				message = "Veterinarian eliminated succesfully!\n";
+			}
+			else
+				message = "Sorry, we couldn't find a veterinarian with that ID number\n";
+		}
+
+		return message;
+	}
+
 	public void addPet(String species, String name, String symptoms, Owner petOwner, PriorityLevel petPriority)
 	{
 		if(petCount < MAX_PETS)
@@ -43,6 +63,11 @@ public class PetCenter
 	public boolean hasVets()
 	{
 		return vetCount < MAX_VETS;
+	}
+
+	public boolean hasPets()
+	{
+		return petCount > 0;
 	}
 
 	public Pet highestPrio()
