@@ -27,4 +27,11 @@ public class Veterinarian
 	{
 		currentlyAttending = petToAttend;
 	}
+
+	// Methods
+
+	public String toString()
+	{
+		return "The ID number of the Veterinarian is: " + idNumber + name + lastNames;
+	}
 }

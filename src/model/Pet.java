@@ -25,4 +25,8 @@ public class Pet
 
 	// Getters & Setters
 
+	public PriorityLevel getPetPrio()
+	{
+		return petPriority;
+	}
 }

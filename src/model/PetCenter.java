@@ -25,18 +25,13 @@ public class PetCenter
 
 	public void addVet(String idNumber, String name, String lastName)
 	{
-		if(idNumber != null && name != null && lastName != null)
-		{
-			veterinarians[vetCount] = new Veterinarian(idNumber, name, lastName);
-			vetCount++;
-		}
+		veterinarians[vetCount] = new Veterinarian(idNumber, name, lastName);
+		vetCount++;
 	}
 
 	public void addPet(String species, String name, String symptoms, Owner petOwner, PriorityLevel petPriority)
 	{
-		if(petCount >= MAX_PETS)
-			System.out.println("Sorry, the system has reached the maximum capacity of pets");
-		else
+		if(petCount < MAX_PETS)
 			pets[petCount] = new Pet(species, name, symptoms, petOwner, petPriority);
 	}
 
@@ -48,5 +43,56 @@ public class PetCenter
 	public boolean hasVets()
 	{
 		return vetCount < MAX_VETS;
+	}
+
+	public Pet highestPrio()
+	{
+		Pet petWithHighestPrio = null;
+		boolean hasEncounteredPet = false;
+
+		for(int i = 0;i < petCount && !hasEncounteredPet;i++)
+		{
+			if(pets[i].getPetPrio() == PriorityLevel.RED)
+				petWithHighestPrio = pets[i];
+		}
+
+
+		for(int i = 0;i < petCount && !hasEncounteredPet;i++)
+		{
+			if(pets[i].getPetPrio() == PriorityLevel.ORANGE)
+				petWithHighestPrio = pets[i];
+		}
+
+		for(int i = 0;i < petCount && !hasEncounteredPet;i++)
+		{
+			if(pets[i].getPetPrio() == PriorityLevel.YELLOW)
+				petWithHighestPrio = pets[i];
+		}
+
+		for(int i = 0;i < petCount && !hasEncounteredPet;i++)
+		{
+			if(pets[i].getPetPrio() == PriorityLevel.GREEN)
+				petWithHighestPrio = pets[i];
+		}
+
+		for(int i = 0;i < petCount && !hasEncounteredPet;i++)
+		{
+			if(pets[i].getPetPrio() == PriorityLevel.BLUE)
+				petWithHighestPrio = pets[i];
+		}
+
+		return petWithHighestPrio;
+	}
+
+	public String vetToString()
+	{
+		String message = "";
+
+		for(int i = 0;i < vetCount;i++)
+		{
+			message += veterinarians[i].toString();
+		}
+
+		return message;
 	}
 }

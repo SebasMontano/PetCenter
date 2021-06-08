@@ -20,6 +20,9 @@ public class Main
 		Main ppal = new Main();
 
 		System.out.println("Welcome to the pet center system!");
+
+		ppal.addVet();
+		ppal.vetsToString();
 	}
 
 	public void addVet()
@@ -30,13 +33,23 @@ public class Main
 
 			System.out.println("Please register the ID number of the new veterinarian:");
 			idNumber = sc.nextLine();
-			sc.nextLine();
 
 			System.out.println("Please enter the name of the new veterinarian:");
 			name = sc.nextLine();
-			sc.nextLine();
 
 			System.out.println("Please enter the last name of the new veterinarian:");
+			lastName = sc.nextLine();
+
+			if(name != null && lastName != null && idNumber != null)
+			{
+				pc.addVet(idNumber, name, lastName);
+				System.out.println("veterinarian added successfully");
+			}
 		}
+	}
+
+	public void vetsToString()
+	{
+		System.out.println(pc.vetToString());
 	}
 }
