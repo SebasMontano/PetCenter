@@ -21,6 +21,13 @@ public class PetCenter
 		petCount = 0;
 	}
 
+	// Getters & Setters
+
+	public Veterinarian[] getVetArray()
+	{
+		return veterinarians;
+	}
+
 	// Methods
 
 	public void addVet(String idNumber, String name, String lastName)
@@ -32,14 +39,16 @@ public class PetCenter
 	public String deleteVet(String input)
 	{
 		String message = "";
+		String idNumber = input;
 		boolean hasEncounteredVet = false;
 
 		for(int i = 0;i < vetCount && !hasEncounteredVet;i++)
 		{
-			if(veterinarians[i].getIdNumber() == input)
+			if(veterinarians[i].getIdNumber().matches(idNumber))
 			{
 				veterinarians[i] = null;
 				hasEncounteredVet = true;
+				vetCount--;
 				message = "Veterinarian eliminated succesfully!\n";
 			}
 			else
@@ -62,12 +71,22 @@ public class PetCenter
 
 	public boolean hasVets()
 	{
+		return vetCount > 0;
+	}
+
+	public boolean vetMaxReached()
+	{
 		return vetCount < MAX_VETS;
 	}
 
 	public boolean hasPets()
 	{
 		return petCount > 0;
+	}
+
+	public boolean petMaxReached()
+	{
+		return petCount < MAX_PETS;
 	}
 
 	public Pet highestPrio()

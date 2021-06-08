@@ -24,18 +24,16 @@ public class Main
 		ppal.addVet();
 		ppal.vetsToString();
 		ppal.deleteVet();
-		ppal.vetsToString();
 	}
 
 	public void addVet()
 	{
-		if(pc.hasVets())
+		if(pc.vetMaxReached())
 		{
-			String idNumber, name, lastName;
+			String name, lastName, idNumber;
 
 			System.out.println("Please register the ID number of the new veterinarian:");
 			idNumber = sc.nextLine();
-			idNumber = idNumber.toUpperCase();
 
 			System.out.println("Please enter the name of the new veterinarian:");
 			name = sc.nextLine();
@@ -53,15 +51,22 @@ public class Main
 			System.out.println("Maximum number of veterinarians reached\n");
 	}
 
+	public void addPet()
+	{
+		
+	}
+
 	public void deleteVet()
 	{
-		String idNumber;
+		if(!pc.hasPets())
+		{
+			String idNumber;
 
-		System.out.println("Please enter the ID number of the veterinarian you wish to delete");
-		idNumber = sc.nextLine();
-		idNumber = idNumber.toUpperCase();
+			System.out.println("Please enter the ID number of the veterinarian you wish to delete:");
+			idNumber = sc.nextLine();
 
-		System.out.println(pc.deleteVet(idNumber));
+			System.out.println(pc.deleteVet(idNumber));
+		}
 	}
 
 	public void vetsToString()
