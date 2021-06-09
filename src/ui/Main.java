@@ -90,7 +90,7 @@ public class Main
 			priorityLevel = sc.nextInt();
 			sc.nextLine();
 
-			
+			pc.createOwner(idNumber, name, phoneNumber, address);
 		}
 		else
 			System.out.println("Sorry, the pet center has reached it's maximum capacity of pets");
