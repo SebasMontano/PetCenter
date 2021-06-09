@@ -3,6 +3,7 @@ package ui;
 import java.util.Scanner;
 
 import model.PetCenter;
+import model.Prioritylevel;
 
 public class Main
 {
@@ -21,9 +22,7 @@ public class Main
 
 		System.out.println("Welcome to the pet center system!");
 
-		ppal.addVet();
-		ppal.vetsToString();
-		ppal.deleteVet();
+		
 	}
 
 	public void addVet()
@@ -53,7 +52,48 @@ public class Main
 
 	public void addPet()
 	{
-		
+		if(pc.petMaxReached())
+		{
+			String species, name, symptoms, ownerName, idNumber, phoneNumber, address;
+			int priorityLevel;
+
+			System.out.println("Please insert the name of the pet's owner:");
+			ownerName = sc.nextLine();
+
+			System.out.println]("Please insert the ID number of the pet's owner:");
+			idNumber = sc.nextLine();
+
+			System.out.println("Please insert the phone number of the pet's owner:");
+			phoneNumber = sc.nextLine();
+
+			System.out.println("Please insert the address of the pet's owner:");
+			address = sc.nextLine();
+
+
+
+			System.out.println("Please insert the species name of the pet:");
+			species = sc.nextLine();
+
+			System.out.println("Please insert the name of the pet:");
+			name = sc.nextLine();
+
+			System.out.println("Please insert the symptoms the pet have:");
+			symptoms = sc.nextLine();
+
+			System.out.println("Please enter one of the following for the pet's priority level: " +
+							   "\n(1) Red" +
+							   "\n(2) Orange" +
+							   "\n(3) Yellow" +
+							   "\n(4) Green" +
+							   "\n(5) Blue");
+
+			priorityLevel = sc.nextInt();
+			sc.nextLine();
+
+			
+		}
+		else
+			System.out.println("Sorry, the pet center has reached it's maximum capacity of pets");
 	}
 
 	public void deleteVet()
@@ -67,10 +107,17 @@ public class Main
 
 			System.out.println(pc.deleteVet(idNumber));
 		}
+		else
+			System.out.println("Sorry, there are still pets in the pet center");
 	}
 
 	public void vetsToString()
 	{
-		System.out.println(pc.vetToString());
+		System.out.println(pc.vetsToString());
+	}
+
+	public void petsToString()
+	{
+		System.out.println(pc.petsToString());
 	}
 }

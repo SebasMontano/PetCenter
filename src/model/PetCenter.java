@@ -11,22 +11,20 @@ public class PetCenter
 	// Relationships
 	private Veterinarian[] veterinarians;
 	private Pet[] pets;
+	private Owner[] owners;
 
 	// Builder
 	public PetCenter()
 	{
 		veterinarians = new Veterinarian[MAX_VETS];
 		pets = new Pet[MAX_PETS];
+		owners = new Owner[MAX_PETS];
 		vetCount = 0;
 		petCount = 0;
+		ownerCount = 0;
 	}
 
 	// Getters & Setters
-
-	public Veterinarian[] getVetArray()
-	{
-		return veterinarians;
-	}
 
 	// Methods
 
@@ -58,10 +56,32 @@ public class PetCenter
 		return message;
 	}
 
-	public void addPet(String species, String name, String symptoms, Owner petOwner, PriorityLevel petPriority)
+	public String addPet(String species, String name, String symptoms, Owner petOwner, PriorityLevel petPriority)
 	{
-		if(petCount < MAX_PETS)
+		String message = "";
+		boolean hasEncounteredMatch = false;
+
+		for(int i = 0;i < petCount && !hasEncounteredMatch;i++)
+		{
+			if(pets[i].getName().matches(name) && pets[i].getPetOwner().getName().matches(petOwner.getName()))
+			{
+				message = "Sorry, there's already a pet with that name and that owner";
+				hasEncounteredMatch = true;
+			}
+		}
+
+		if(!hasEncounteredMatch)
+		{
 			pets[petCount] = new Pet(species, name, symptoms, petOwner, petPriority);
+			message = "Pet added succesfully!";
+		}
+
+		return message;
+	}
+
+	public void createOwner(String idNumber, String name, String phoneNumber, String address)
+	{
+		owners[ownerCount] = new Owner(idNumber, name, phoneNumber, address);
 	}
 
 	public void assignPet()
@@ -128,13 +148,25 @@ public class PetCenter
 		return petWithHighestPrio;
 	}
 
-	public String vetToString()
+	public String vetsToString()
 	{
 		String message = "";
 
 		for(int i = 0;i < vetCount;i++)
 		{
 			message += veterinarians[i].toString();
+		}
+
+		return message;
+	}
+
+	public String petsToString()
+	{
+		String message = "";
+
+		for(int i = 0;i < petCount;i++)
+		{
+			message += pets[i].toString();
 		}
 
 		return message;
